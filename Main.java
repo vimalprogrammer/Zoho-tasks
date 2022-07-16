@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Main 
 {
-  public static void main(String[] arguments) throws java.lang.Exception 
+  public static void main(String[] arguments) 
   {
     Scanner sc = new Scanner(System.in);
     ParkSystem CarParker = new ParkSystem();
@@ -114,6 +114,7 @@ public class Main
               break;
             }
             
+            System.out.print("The car is at location ");
             System.out.println(resSlot + 1);
             break;
           }
