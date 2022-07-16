@@ -20,15 +20,15 @@ class ParkSystem
       occupiedSlots[i] = null;
   }
 
-
-
   private int getFirstVacantSlot() 
   {
     if (this.vsSize == 0)
       return -1;
-    int slotNumber = vacantSlots[0];
-    vacantSlots[0] = vacantSlots[vsSize - 1];
-    vsSize--;
+    int slotNumber = vacantSlots[totalNumberOfSlots - vsSize];
+    // System.out.println(slotNumber);
+    // System.out.println(vsSize);
+    // System.out.println(totalNumberOfSlots);
+    --vsSize;
     return slotNumber;
   }
 
@@ -36,9 +36,6 @@ class ParkSystem
   {
     if (slot == -1)
       return;
-
-    if (car == null)
-      updateVacantSlots(slot);
     occupiedSlots[slot] = car;
   }
 
@@ -58,8 +55,6 @@ class ParkSystem
 
   public void updateVacantSlots(int element) 
   {
-    if (vsSize >= totalNumberOfSlots)
-      return;
     vacantSlots[vsSize] = element;
     vsSize++;
   }
@@ -80,7 +75,7 @@ class ParkSystem
   {
     for (int i = 0; i < totalNumberOfSlots; i++) 
     {
-      if (occupiedSlots[i] != null && occupiedSlots[i].getRegNo().equalsIgnoreCase(regNo)) 
+      if (occupiedSlots[i] != null && occupiedSlots[i].getRegNo().equals(regNo)) 
         return i;
     }
     return -1;
