@@ -1,11 +1,17 @@
-class ParkSystem 
+public class ParkSystem 
 {
-  private int totalNumberOfSlots;
-  private int vsSize = 0;
-  private int[] vacantSlots;
-  private Car[] occupiedSlots;
+  public int totalNumberOfSlots;
+  public int vsSize = 0;
+  public int[] vacantSlots;
+  public Car[] occupiedSlots;
 
-  private void initilizeVacantSlots() 
+
+  public Car[] getOccupiedSlots(){
+      return occupiedSlots;
+  }
+
+
+  public void initilizeVacantSlots() 
   {
     vacantSlots = new int[totalNumberOfSlots];
     for (int i = 0; i < this.totalNumberOfSlots; i++)
@@ -13,14 +19,14 @@ class ParkSystem
       
   }
 
-  private void initilizeOccupiedSlots() 
+  public void initilizeOccupiedSlots() 
   {
     occupiedSlots = new Car[totalNumberOfSlots];
     for (int i = 0; i < totalNumberOfSlots; i++)
       occupiedSlots[i] = null;
   }
 
-  private int getFirstVacantSlot() 
+  public int getFirstVacantSlot() 
   {
     if (this.vsSize == 0)
       return -1;
@@ -59,25 +65,4 @@ class ParkSystem
     vsSize++;
   }
 
-  public void displayStatus() 
-  {
-    System.out.println();
-    System.out.println("Slot No\t| Car");
-    for (int i = 0; i < totalNumberOfSlots; i++) 
-    {
-      if (occupiedSlots[i] != null) 
-        System.out.println(i + 1 + "\t| " + occupiedSlots[i].getRegNo());
-    }
-    System.out.println();
-  }
-
-  public int getSlotNumberOfCar(String regNo) 
-  {
-    for (int i = 0; i < totalNumberOfSlots; i++) 
-    {
-      if (occupiedSlots[i] != null && occupiedSlots[i].getRegNo().equals(regNo)) 
-        return i;
-    }
-    return -1;
-}
 }
