@@ -106,7 +106,8 @@ public class Main
         case "5":
           try
           {
-            int resSlot = CarParker.getSlotNumberOfCar(args[1]);
+            CheckSlot check=new CheckSlot(CarParker); 
+            int resSlot = check.getSlotNumberOfCar(args[1]);
             if (resSlot == -1) 
             {
               System.out.println();
