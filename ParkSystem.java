@@ -1,10 +1,9 @@
-public class ParkSystem 
+public class ParkSystem extends Main
 {
   public int totalNumberOfSlots;
   public int vsSize = 0;
   public int[] vacantSlots;
   public Car[] occupiedSlots;
-
 
   public Car[] getOccupiedSlots(){
       return occupiedSlots;
@@ -28,14 +27,31 @@ public class ParkSystem
 
   public int getFirstVacantSlot() 
   {
-    if (this.vsSize == 0)
-      return -1;
-    int slotNumber = vacantSlots[totalNumberOfSlots - vsSize];
-    // System.out.println(slotNumber);
-    // System.out.println(vsSize);
-    // System.out.println(totalNumberOfSlots);
-    --vsSize;
-    return slotNumber;
+    int slotNum=-1;
+    int n=totalNumberOfSlots/4;
+    if(vehType==2)
+    {
+        for(int i=0;i<n;i++)
+        {
+            if(occupiedSlots[i]==null)
+            {
+                slotNum=i;
+                break;
+            }
+        }
+    }
+    else if(vehType==4)
+    {
+        for(int i=n;i<totalNumberOfSlots;i++)
+        {
+            if(occupiedSlots[i]==null)
+            {
+                slotNum=i;
+                break;
+            }
+        }
+    } 
+    return slotNum;
   }
 
   public void updateOccupiedSlots(int slot, Car car) 
