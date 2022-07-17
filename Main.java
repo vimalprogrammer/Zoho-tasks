@@ -46,7 +46,7 @@ public class Main
           if (allotedSlot == -1) 
           {
             System.out.println();
-            System.out.println("Sorry! There is No parking space available");
+            System.out.println("Sorry! Parking is full");
             System.out.println();
             break;
           }
@@ -89,15 +89,16 @@ public class Main
         }
         break;
         case "4":
+          DisplayParking display=new DisplayParking(CarParker);
           try
           {
-            CarParker.displayStatus();
+            display.displayStatus();
             break;
           }
           catch(Exception e)
           {
             System.out.println();
-            System.out.println("Invalid Command");
+            System.out.println(e);
             System.out.println();
             continue;
           }
@@ -113,9 +114,10 @@ public class Main
               System.out.println();
               break;
             }
-            
+            System.out.println();
             System.out.print("The car is at location ");
             System.out.println(resSlot + 1);
+            System.out.println();
             break;
           }
           
@@ -127,7 +129,9 @@ public class Main
             continue;
         }
         default:
+            System.out.println();
             System.out.println("Invalid Command");
+            System.out.println();
       }
     }
   }
