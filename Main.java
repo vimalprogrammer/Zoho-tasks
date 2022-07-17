@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Main 
 {
+   static int vehType;
   public static void main(String[] arguments) 
   {
     Scanner sc = new Scanner(System.in);
@@ -32,7 +33,7 @@ public class Main
         catch(Exception e)
         {
             System.out.println();
-            System.out.println("Invalid Command");
+            System.out.println("Invalid Command"+e);
             System.out.println();
             continue;
         }
@@ -41,6 +42,8 @@ public class Main
         try
         {
           String regNo = args[1];
+          vehType=Integer.parseInt(args[2]);
+          
           Car car = new Car(regNo);
           int allotedSlot = CarParker.allotSlot(car);
           if (allotedSlot == -1) 
@@ -59,7 +62,7 @@ public class Main
         catch(Exception e)
         {   
             System.out.println();
-            System.out.println("Invalid Command");
+            System.out.println(e);
             System.out.println();
             continue;
         }
@@ -83,7 +86,7 @@ public class Main
         catch(Exception e)
         {
             System.out.println();
-            System.out.println("Invalid Command");
+            System.out.println("Invalid Command"+e);
             System.out.println();
             continue;
         }
@@ -125,7 +128,7 @@ public class Main
         catch(Exception e)
         {
             System.out.println();
-            System.out.println("Invalid Command");
+            System.out.println("Invalid Command"+e);
             System.out.println();
             continue;
         }
