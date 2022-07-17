@@ -1,6 +1,6 @@
 public class ParkSystem extends Main
 {
-  public int totalNumberOfSlots;
+  public static int totalNumberOfSlots;
   public int vsSize = 0;
   public int[] vacantSlots;
   public Car[] occupiedSlots;

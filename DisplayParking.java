@@ -1,4 +1,4 @@
-public class DisplayParking
+public class DisplayParking extends ParkSystem
 {
    private ParkSystem CarParker;
     public DisplayParking(ParkSystem CarParker)
@@ -23,11 +23,14 @@ public class DisplayParking
   {
      Car arr[]= CarParker.getOccupiedSlots();
      int count=0;
-     System.out.println("Slot No\t| Car");
+     System.out.println("Slot No\t| Bike");
      for(Car i: arr)
      {
-         if (i != null) 
-             System.out.println(count + 1 + "\t| " + i.getRegNo());
+         if(count==totalNumberOfSlots/4)
+            System.out.println("\nSlot No\t| car");
+         
+        if (i != null) 
+            System.out.println(count + 1 + "\t| " + i.getRegNo());
         count++;
      }
   }
