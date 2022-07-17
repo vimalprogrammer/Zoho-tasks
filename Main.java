@@ -9,11 +9,11 @@ public class Main
     ParkSystem CarParker = new ParkSystem();
     while (true) 
     {
-      System.out.println("Enter 1 -to- Create total parking space");
-      System.out.println("Enter 2 -to- park the Vehicle(Make sure to enter the vehicle number)");
-      System.out.println("Enter 3 -to- take the Vehicle((Make sure to enter the vehicle number)");
-      System.out.println("Enter 4 -to- List the Parking System");
-      System.out.println("Enter 5 -to- The identify the place of the Vehicle");
+      System.out.println("Press 1 and enter total parking space");
+      System.out.println("Press 2 and enter vehicle Number and Type");
+      System.out.println("Press 3 and enter the Vehicle Number to need to be take");
+      System.out.println("Press 4 to List the Parking System");
+      System.out.println("Press 5 to The identify the place of the Vehicle");
       System.out.print("\n");
       String input = sc.nextLine();
       String args[] = input.split(" ");
@@ -25,16 +25,12 @@ public class Main
         try
         {
           CarParker.createSlot(Integer.valueOf(args[1]));
-          System.out.println();
-          System.out.println("---Created a parking slot with " + args[1] + " slots---");
-          System.out.println();
+          System.out.println("\n---Created a parking slot with " + args[1] + " slots---\n");
           break;
         }
         catch(Exception e)
         {
-            System.out.println();
-            System.out.println("Invalid Command"+e);
-            System.out.println();
+            System.out.println("\nInvalid Command\n"+e);
             continue;
         }
         
@@ -48,14 +44,10 @@ public class Main
           int allotedSlot = CarParker.allotSlot(car);
           if (allotedSlot == -1) 
           {
-            System.out.println();
-            System.out.println("Sorry! Parking is full");
-            System.out.println();
+            System.out.println("\nSorry! Parking is full\n");
             break;
           }
-          System.out.println();
-          System.out.println("Allocated slot number: " + (allotedSlot + 1));
-          System.out.println();
+          System.out.println("\nAllocated slot number: " + (allotedSlot + 1)+"\n");
           break;
         }
         
@@ -72,22 +64,16 @@ public class Main
         {
           int slot = Integer.valueOf(args[1]) - 1;
           CarParker.updateOccupiedSlots(slot, null);
-          System.out.println();
-          System.out.println("Slot number " + (slot + 1) + " is free");
-          System.out.println();
+          System.out.println("\nSlot number " + (slot + 1) + " is free\n");
         }
         catch(ArrayIndexOutOfBoundsException ex)
         {
-            System.out.println();
-            System.out.println("Beyond the range - There is no such slot exists ");
-            System.out.println();
+            System.out.println("\nBeyond the range - There is no such slot exists\n");
             continue;
         }
         catch(Exception e)
         {
-            System.out.println();
-            System.out.println("Invalid Command"+e);
-            System.out.println();
+            System.out.println("\nInvalid Command\n"+e);
             continue;
         }
         break;
@@ -113,29 +99,21 @@ public class Main
             int resSlot = check.getSlotNumberOfCar(args[1]);
             if (resSlot == -1) 
             {
-              System.out.println();
-              System.out.println("Not found");
-              System.out.println();
+              System.out.println("\nNot found\n");
               break;
             }
-            System.out.println();
-            System.out.print("The car is at location ");
+            System.out.print("\nThe car is at location");
             System.out.println(resSlot + 1);
-            System.out.println();
             break;
           }
           
         catch(Exception e)
         {
-            System.out.println();
-            System.out.println("Invalid Command"+e);
-            System.out.println();
+            System.out.println("\nInvalid Command\n"+e);
             continue;
         }
         default:
-            System.out.println();
-            System.out.println("Invalid Command");
-            System.out.println();
+            System.out.println("\nInvalid Command\n");
       }
     }
   }
