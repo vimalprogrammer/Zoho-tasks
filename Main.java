@@ -1,4 +1,6 @@
 import java.util.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 public class Main 
 {
@@ -7,6 +9,7 @@ public class Main
   {
     Scanner sc = new Scanner(System.in);
     ParkSystem VehiclePark = new ParkSystem();
+    CheckSlot check=new CheckSlot(VehiclePark); 
     while (true) 
     {
         System.out.println("Press 1 and enter total parking space");
@@ -63,7 +66,7 @@ public class Main
               System.out.print("Enter Vehicle position to take: ");
               int slot = sc.nextInt();
               VehiclePark.updateOccupiedSlots(slot-1, null);
-              System.out.println("\nSlot number " + (slot + 1) + " is free\n");
+              System.out.println("\nSlot number " + (slot) + " is free\n");
             }
             catch(ArrayIndexOutOfBoundsException ex)
             {
@@ -96,9 +99,9 @@ public class Main
         {
           try
           {
-            CheckSlot check=new CheckSlot(VehiclePark); 
-            int resSlot = check.getSlotNumberOfCar("cr1");
-            System.out.println("FOR CAR "+resSlot);
+            System.out.print("Enter Vehicle No to check the slot: ");
+            String s=sc.next();
+            int resSlot = check.getSlotNumberOfCar(s);
             int x=resSlot + 1;
             if (resSlot == -1) 
             {
@@ -127,6 +130,7 @@ public class Main
           
             catch(Exception e)
             {
+                //System.out.println("FOR CAR "+resSlot);
                 System.out.println("\nInvalid Command\n"+e);
                 continue;
             }
