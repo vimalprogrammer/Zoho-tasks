@@ -41,8 +41,3 @@ public class CheckSlot
 //      }
 //   }
 }
-
-
-
-1. FLOOR
-2. 
