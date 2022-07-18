@@ -6,115 +6,144 @@ public class Main
   public static void main(String[] arguments) 
   {
     Scanner sc = new Scanner(System.in);
-    ParkSystem CarParker = new ParkSystem();
+    ParkSystem VehiclePark = new ParkSystem();
     while (true) 
     {
-      System.out.println("Press 1 and enter total parking space");
-      System.out.println("Press 2 and enter vehicle Number and Type");
-      System.out.println("Press 3 and enter the Vehicle Number to need to be take");
-      System.out.println("Press 4 to List the Parking System");
-      System.out.println("Press 5 to The identify the place of the Vehicle");
-      System.out.print("\n");
-      String input = sc.nextLine();
-      String args[] = input.split(" ");
-      String choice = args[0];
-      
-      switch (choice) 
-      {
-        case "1":
-        try
+        System.out.println("Press 1 and enter total parking space");
+        System.out.println("Press 2 and enter vehicle Number and Type");
+        System.out.println("Press 3 and enter the Vehicle Number to need to be take");
+        System.out.println("Press 4 to List the Parking System");
+        System.out.println("Press 5 to The identify the place of the Vehicle");
+        System.out.println("Press 0 to Exit");
+        System.out.print("\n");
+        int input = sc.nextInt();
+        if(input==1)
         {
-          CarParker.createSlot(Integer.valueOf(args[1]));
-          System.out.println("\n---Created a parking slot with " + args[1] + " slots---\n");
-          break;
-        }
-        catch(Exception e)
-        {
-            System.out.println("\nInvalid Command\n"+e);
-            continue;
+            try
+            {
+              VehiclePark.createSlot(80);
+              System.out.println("\n---Created a parking slot with " + 80 + " slots---\n");
+            }
+            catch(Exception e)
+            {
+                System.out.println("\nInvalid Command\n"+e);
+                continue;
+            }
         }
         
-        case "2":
-        try
+        else if(input==2)
         {
-          String regNo = args[1];
-          vehType=Integer.parseInt(args[2]);
+            try
+            {
+              System.out.print("Enter Register No: ");
+              String regNo = sc.next();
+              System.out.print("Enter Vehicle Type(2/4): ");
+              vehType=sc.nextInt();
+              Car car = new Car(regNo);
+              int allotedSlot = VehiclePark.allotSlot(car);
+              if (allotedSlot == -1) 
+              {
+                System.out.println("\nSorry! Parking is full\n");
+              }
+              System.out.println("\nAllocated slot number: " + (allotedSlot + 1)+"\n");
+              
+            }
+            
+            catch(Exception e)
+            {   
+                System.out.println("\nInvalid Command\n"+e);
+                continue;
+            }
+        }
+        
+        else if(input==3)
+        {
+            try
+            {
+              System.out.print("Enter Vehicle position to take: ");
+              int slot = sc.nextInt();
+              VehiclePark.updateOccupiedSlots(slot-1, null);
+              System.out.println("\nSlot number " + (slot + 1) + " is free\n");
+            }
+            catch(ArrayIndexOutOfBoundsException ex)
+            {
+                System.out.println("\nBeyond the range - There is no such slot exists\n");
+                continue;
+            }
+            catch(Exception e)
+            {
+                System.out.println("\nInvalid Command\n"+e);
+                continue;
+            }
+            
+        }
+        
+        else if(input==4)
+        {
+              DisplayParking display=new DisplayParking(VehiclePark);
+              try
+              {
+                display.displayStatus();
+              }
+              catch(Exception e)
+              {
+                System.out.println("\nInvalid Command\n"+e);
+                continue;
+              }
+        }
           
-          Car car = new Car(regNo);
-          int allotedSlot = CarParker.allotSlot(car);
-          if (allotedSlot == -1) 
-          {
-            System.out.println("\nSorry! Parking is full\n");
-            break;
-          }
-          System.out.println("\nAllocated slot number: " + (allotedSlot + 1)+"\n");
-          break;
-        }
-        
-        catch(Exception e)
-        {   
-            System.out.println();
-            System.out.println(e);
-            System.out.println();
-            continue;
-        }
-        
-        case "3":
-        try
+        else if(input==5)
         {
-          int slot = Integer.valueOf(args[1]) - 1;
-          CarParker.updateOccupiedSlots(slot, null);
-          System.out.println("\nSlot number " + (slot + 1) + " is free\n");
-        }
-        catch(ArrayIndexOutOfBoundsException ex)
-        {
-            System.out.println("\nBeyond the range - There is no such slot exists\n");
-            continue;
-        }
-        catch(Exception e)
-        {
-            System.out.println("\nInvalid Command\n"+e);
-            continue;
-        }
-        break;
-        case "4":
-          DisplayParking display=new DisplayParking(CarParker);
           try
           {
-            display.displayStatus();
-            break;
-          }
-          catch(Exception e)
-          {
-            System.out.println();
-            System.out.println(e);
-            System.out.println();
-            continue;
-          }
-          
-        case "5":
-          try
-          {
-            CheckSlot check=new CheckSlot(CarParker); 
-            int resSlot = check.getSlotNumberOfCar(args[1]);
+            CheckSlot check=new CheckSlot(VehiclePark); 
+            int resSlot = check.getSlotNumberOfCar("cr1");
+            System.out.println("FOR CAR "+resSlot);
+            int x=resSlot + 1;
             if (resSlot == -1) 
             {
               System.out.println("\nNot found\n");
-              break;
             }
-            System.out.print("\nThe car is at location");
-            System.out.println(resSlot + 1);
-            break;
+            int floor=0;
+            if(resSlot<=10)
+            {
+                System.out.print("\nThe Vehicle is at Slot No: "+ x + " at Ground floor 1\n\n");
+            }
+            else if(resSlot>10 && resSlot<=20 )
+            {
+                System.out.print("\nThe Vehicle is at Slot No: "+ x + " at Ground floor 2\n\n");
+            }
+            else if(resSlot%10==0)
+            {
+                floor=(resSlot/10)-1;
+                System.out.print("\nThe Vehicle is at Slot No: "+ x + " at "+floor+ " floor\n\n");
+            }
+            else
+            {
+                floor = resSlot/10;
+                System.out.print("\nThe Vehicle is at Slot No: "+ x + " at "+floor+ " floor\n\n");
+            }
           }
           
-        catch(Exception e)
-        {
-            System.out.println("\nInvalid Command\n"+e);
-            continue;
+            catch(Exception e)
+            {
+                System.out.println("\nInvalid Command\n"+e);
+                continue;
+            }
         }
-        default:
-            System.out.println("\nInvalid Command\n");
-      }
+        else if(input==0)
+        {
+            try
+            {
+    		    System.exit(0);
+            }
+          
+            catch(Exception e)
+            {
+                System.out.println("\nInvalid Command\n"+e);
+                continue;
+            }
+        }
     }
   }
 }

@@ -22,16 +22,19 @@ public class ParkSystem extends Main
   {
     occupiedSlots = new Car[totalNumberOfSlots];
     for (int i = 0; i < totalNumberOfSlots; i++)
+    {
       occupiedSlots[i] = null;
+	//System.out.println(occupiedSlots[i]);
+    }
+
   }
 
   public int getFirstVacantSlot() 
   {
     int slotNum=-1;
-    int n=totalNumberOfSlots/4;
     if(vehType==2)
     {
-        for(int i=0;i<n;i++)
+        for(int i=0;i<20;i++)
         {
             if(occupiedSlots[i]==null)
             {
@@ -42,7 +45,7 @@ public class ParkSystem extends Main
     }
     else if(vehType==4)
     {
-        for(int i=n;i<totalNumberOfSlots;i++)
+        for(int i=20;i<80;i++)
         {
             if(occupiedSlots[i]==null)
             {

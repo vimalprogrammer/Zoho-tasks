@@ -1,14 +1,14 @@
 public class CheckSlot
 {
-    private ParkSystem CarParker;
-    public CheckSlot(ParkSystem CarParker)
+    private ParkSystem VehiclePark;
+    public CheckSlot(ParkSystem VehiclePark)
     {
-        this.CarParker=CarParker;
+        this.VehiclePark=VehiclePark;
     }
 
   public int getSlotNumberOfCar(String regNo)
   {
-     Car arr[]= CarParker.getOccupiedSlots();
+     Car arr[]= VehiclePark.getOccupiedSlots();
      int count=0;
      for(Car i: arr)
      {
@@ -31,7 +31,7 @@ public class CheckSlot
   
   
 //   public void displayStatus(){
-//      Car arr[]= CarParker.getOccupiedSlots();
+//      Car arr[]= VehiclePark.getOccupiedSlots();
 //      int count=0;
 //      System.out.println("Slot No\t| Car");
 //      for(Car i: arr){

@@ -1,9 +1,9 @@
 public class DisplayParking extends ParkSystem
 {
-   private ParkSystem CarParker;
-    public DisplayParking(ParkSystem CarParker)
+   private ParkSystem VehiclePark;
+    public DisplayParking(ParkSystem VehiclePark)
     {
-        this.CarParker=CarParker;
+        this.VehiclePark=VehiclePark;
     }
 //   public void displayStatus() 
 //   {
@@ -21,16 +21,54 @@ public class DisplayParking extends ParkSystem
   
   public void displayStatus()
   {
-     Car arr[]= CarParker.getOccupiedSlots();
-     int count=0;
-     System.out.println("Slot No\t| Bike");
+     Car arr[]= VehiclePark.getOccupiedSlots();
+     int count=1;
+     System.out.println("Slot No\t| Bike\t| Floor");
+     System.out.println("--------------------------------------------------------------");
+     int floor=0;
      for(Car i: arr)
      {
-         if(count==totalNumberOfSlots/4)
-            System.out.println("\nSlot No\t| car");
-         
-        if (i != null) 
-            System.out.println(count + 1 + "\t| " + i.getRegNo());
+        if (count<=10)
+        {
+            if(i==null)
+                System.out.println(count + "\t| " + "FREE" + "\t| "+ "Ground Floor 1");
+            else
+                System.out.println(count + "\t| " + i.getRegNo()+ "\t| "+ "Ground Floor 1");
+        }
+        else if (count>10 && count <=20) 
+        {
+            if(i==null)
+                System.out.println(count + "\t| " + "FREE" + "\t| "+ "Ground Floor 2");
+            else
+                System.out.println(count + "\t| " + i.getRegNo()+ "\t| "+ "Ground Floor 2");
+        }
+        
+        if(count==21)
+        {
+            System.out.println("\nSlot No\t| car\t| Floor");
+            System.out.println("--------------------------------------------------------------");
+        }
+        if (count>=21) 
+        {
+            floor=(count/10)-1;
+            if(count%10!=0)
+            {   
+                if(i==null)
+                    System.out.println(count + "\t| " + "FREE" + "\t| "+ floor +"th floor\n");
+                else
+                    System.out.println(count + "\t| " + i.getRegNo()+ "\t| "+ floor +"th floor\n");
+            }
+            else
+            {
+                floor--;
+                if(i==null)
+                    System.out.println(count + "\t| " + "FREE" + "\t| "+ floor +"th floor\n");
+                else
+                    System.out.println(count + "\t| " + i.getRegNo()+ "\t| "+ floor +"th floor\n");    
+            }
+        }
+        if(count%10==0)
+            System.out.println("--------------------------------------------------------------");
         count++;
      }
   }
