@@ -42,8 +42,8 @@ public class Main
               String regNo = sc.next();
               System.out.print("Enter Vehicle Type(2/4): ");
               vehType=sc.nextInt();
-              Car car = new Car(regNo);
-              int allotedSlot = VehiclePark.allotSlot(car);
+              Vehicle vehicle = new Vehicle(regNo);
+              int allotedSlot = VehiclePark.allotSlot(vehicle);
               if (allotedSlot == -1) 
               {
                 System.out.println("\nSorry! Parking is full\n");
@@ -101,29 +101,29 @@ public class Main
           {
             System.out.print("Enter Vehicle No to check the slot: ");
             String s=sc.next();
-            int resSlot = check.getSlotNumberOfCar(s);
+            int resSlot = check.getSlotNumberOfVehicle(s);
             int x=resSlot + 1;
             if (resSlot == -1) 
             {
               System.out.println("\nNot found\n");
             }
             int floor=0;
-            if(resSlot<=10)
+            if(resSlot<10)
             {
                 System.out.print("\nThe Vehicle is at Slot No: "+ x + " at Ground floor 1\n\n");
             }
-            else if(resSlot>10 && resSlot<=20 )
+            else if(resSlot>10 && resSlot<20 )
             {
                 System.out.print("\nThe Vehicle is at Slot No: "+ x + " at Ground floor 2\n\n");
             }
-            else if(resSlot%10==0)
+            else if(resSlot%10==0 && resSlot!=20)
             {
-                floor=(resSlot/10)-1;
+                floor=(resSlot/10)-2;
                 System.out.print("\nThe Vehicle is at Slot No: "+ x + " at "+floor+ " floor\n\n");
             }
             else
             {
-                floor = resSlot/10;
+                floor = (resSlot/10)-1;
                 System.out.print("\nThe Vehicle is at Slot No: "+ x + " at "+floor+ " floor\n\n");
             }
           }

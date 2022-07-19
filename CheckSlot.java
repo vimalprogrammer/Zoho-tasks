@@ -6,16 +6,16 @@ public class CheckSlot
         this.VehiclePark=VehiclePark;
     }
 
-//   public int getSlotNumberOfCar(String regNo)
+//   public int getSlotNumberOfVehicle(String regNo)
 //   {
-    //  Car arr[]= VehiclePark.getOccupiedSlots();
+    //  Vehicle arr[]= VehiclePark.getOccupiedSlots();
     //  int count=0;
-    //  for(Car i:arr)
+    //  for(Vehicle i:arr)
     //  {
     //      String s=String.valueOf(i.getRegNo());
     //      System.out.println(s);
     //  }
-//      for(Car i: arr)
+//      for(Vehicle i: arr)
 //      {
 //          String s=String.valueOf(i.getRegNo());
 //          if (i != null && s.equals(regNo)) 
@@ -25,7 +25,7 @@ public class CheckSlot
 //      return -1;
 //   }
 
- public int getSlotNumberOfCar(String regNo) 
+ public int getSlotNumberOfVehicle(String regNo) 
   {
     for (int i = 0; i < 80; i++) 
     {
@@ -37,10 +37,10 @@ public class CheckSlot
   
   
 //   public void displayStatus(){
-//      Car arr[]= VehiclePark.getOccupiedSlots();
+//      Vehicle arr[]= VehiclePark.getOccupiedSlots();
 //      int count=0;
-//      System.out.println("Slot No\t| Car");
-//      for(Car i: arr){
+//      System.out.println("Slot No\t| Vehicle");
+//      for(Vehicle i: arr){
 //          if (i != null) 
 //              System.out.println(count + 1 + "\t| " + i.getRegNo());
 //         count++;

@@ -3,9 +3,9 @@ public class ParkSystem extends Main
   public static int totalNumberOfSlots;
   public int vsSize = 0;
   public int[] vacantSlots;
-  public Car[] occupiedSlots;
+  public Vehicle[] occupiedSlots;
 
-  public Car[] getOccupiedSlots(){
+  public Vehicle[] getOccupiedSlots(){
       return occupiedSlots;
   }
 
@@ -20,7 +20,7 @@ public class ParkSystem extends Main
 
   public void initilizeOccupiedSlots() 
   {
-    occupiedSlots = new Car[totalNumberOfSlots];
+    occupiedSlots = new Vehicle[totalNumberOfSlots];
     for (int i = 0; i < totalNumberOfSlots; i++)
     {
       occupiedSlots[i] = null;
@@ -57,17 +57,17 @@ public class ParkSystem extends Main
     return slotNum;
   }
 
-  public void updateOccupiedSlots(int slot, Car car) 
+  public void updateOccupiedSlots(int slot, Vehicle vehicle) 
   {
     if (slot == -1)
       return;
-    occupiedSlots[slot] = car;
+    occupiedSlots[slot] = vehicle;
   }
 
-  public int allotSlot(Car car) 
+  public int allotSlot(Vehicle vehicle) 
   {
     int allotedSlot = getFirstVacantSlot();
-    updateOccupiedSlots(allotedSlot, car);
+    updateOccupiedSlots(allotedSlot, vehicle);
     return allotedSlot;
   }
 

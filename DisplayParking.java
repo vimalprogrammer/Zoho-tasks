@@ -11,7 +11,7 @@ public class DisplayParking extends ParkSystem
 //   public void displayStatus() 
 //   {
 //     System.out.println();
-//     System.out.println("Slot No\t| Car");
+//     System.out.println("Slot No\t| Vehicle");
     
 //     for (int i = 0; i < totalNumberOfSlots; i++) 
 //     {
@@ -24,12 +24,12 @@ public class DisplayParking extends ParkSystem
   
   public void displayStatus() throws Exception
   {
-     Car arr[]= VehiclePark.getOccupiedSlots();
+     Vehicle arr[]= VehiclePark.getOccupiedSlots();
      int count=1;
-     System.out.println("Slot No\t| Bike\t| Floor");
+     System.out.println("Slot No\t| Vehicle(Bike)\t| Floor");
      System.out.println("--------------------------------------------------------------");
      int floor=0;
-     for(Car i: arr)
+     for(Vehicle i: arr)
      {
         if (count<=10)
         {
@@ -48,7 +48,7 @@ public class DisplayParking extends ParkSystem
         
         if(count==21)
         {
-            System.out.println("\nSlot No\t| car\t| Floor");
+            System.out.println("\nSlot No\t| vehicle(Car)\t| Floor");
             System.out.println("--------------------------------------------------------------");
         }
         if (count>=21) 
@@ -73,7 +73,7 @@ public class DisplayParking extends ParkSystem
         if(count%10==0)
             System.out.println("--------------------------------------------------------------");
         count++;
-     }
+    }
         BufferedWriter writer = new BufferedWriter(new FileWriter("myfile.txt", true));
         for (int i = 0; i < 80; i++) 
         {

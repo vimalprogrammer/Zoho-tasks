@@ -1,7 +1,7 @@
-public class Car {
+public class Vehicle {
   private String regNo;
   
-  public Car(String regNo) {
+  public Vehicle(String regNo) {
     this.regNo = regNo;
   }
 
