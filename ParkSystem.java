@@ -29,7 +29,7 @@ public class ParkSystem extends Main
 
   }
 
-  public int getFirstVacantSlot() 
+  public int getFirstVacantSlot(Vehicle vehicle) 
   {
     int slotNum=-1;
     if(vehType==2)
@@ -66,7 +66,12 @@ public class ParkSystem extends Main
 
   public int allotSlot(Vehicle vehicle) 
   {
-    int allotedSlot = getFirstVacantSlot();
+     for (int i = 0; i < 80; i++) 
+     {
+       if (occupiedSlots[i] != null && String.valueOf(occupiedSlots[i].getRegNo()).equals(String.valueOf(vehicle.getRegNo()))) 
+         return -2;
+     }
+    int allotedSlot = getFirstVacantSlot(vehicle);
     updateOccupiedSlots(allotedSlot, vehicle);
     return allotedSlot;
   }

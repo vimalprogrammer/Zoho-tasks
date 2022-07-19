@@ -17,10 +17,11 @@ public class Main
         System.out.println("Press 3 and enter the Vehicle Number to need to be take");
         System.out.println("Press 4 to List the Parking System");
         System.out.println("Press 5 to The identify the place of the Vehicle");
-        System.out.println("Press 0 to Exit");
-        System.out.print("\n");
-        int input = sc.nextInt();
-        if(input==1)
+        System.out.println("Press 0 to Exit\n");
+
+        String input = sc.next();
+
+        if(input.equals("1"))
         {
             try
             {
@@ -29,12 +30,11 @@ public class Main
             }
             catch(Exception e)
             {
-                System.out.println("\nInvalid Command\n"+e);
-                continue;
+                System.out.println("\nInvalid Command - Parking Slot already Created\n");
             }
         }
         
-        else if(input==2)
+        else if(input.equals("2"))
         {
             try
             {
@@ -42,13 +42,19 @@ public class Main
               String regNo = sc.next();
               System.out.print("Enter Vehicle Type(2/4): ");
               vehType=sc.nextInt();
+		  if(vehType != 2 && vehType != 4)
+			System.out.print("\nSorry, Only 2 or 4 Wheeler Vehicles allowed\n");
+		  else
+		  {
               Vehicle vehicle = new Vehicle(regNo);
               int allotedSlot = VehiclePark.allotSlot(vehicle);
               if (allotedSlot == -1) 
-              {
                 System.out.println("\nSorry! Parking is full\n");
-              }
+              else if (allotedSlot == -2) 
+                System.out.println("\nThe Vehicle with this No. already exists\n");
+              else 
               System.out.println("\nAllocated slot number: " + (allotedSlot + 1)+"\n");
+		  }
               
             }
             
@@ -59,7 +65,7 @@ public class Main
             }
         }
         
-        else if(input==3)
+        else if(input.equals("3"))
         {
             try
             {
@@ -73,6 +79,11 @@ public class Main
                 System.out.println("\nBeyond the range - There is no such slot exists\n");
                 continue;
             }
+            catch(InputMismatchException ie)
+            {
+                System.out.println("\nInvalid Command\n"+ie);
+                continue;
+            }
             catch(Exception e)
             {
                 System.out.println("\nInvalid Command\n"+e);
@@ -81,7 +92,7 @@ public class Main
             
         }
         
-        else if(input==4)
+        else if(input.equals("4"))
         {
               DisplayParking display=new DisplayParking(VehiclePark);
               try
@@ -95,7 +106,7 @@ public class Main
               }
         }
           
-        else if(input==5)
+        else if(input.equals("5"))
         {
           try
           {
@@ -103,12 +114,12 @@ public class Main
             String s=sc.next();
             int resSlot = check.getSlotNumberOfVehicle(s);
             int x=resSlot + 1;
+            int floor=0;
             if (resSlot == -1) 
             {
-              System.out.println("\nNot found\n");
+              System.out.println("\nNo vehicle has this Register No\n");
             }
-            int floor=0;
-            if(resSlot<10)
+            else if(resSlot<10)
             {
                 System.out.print("\nThe Vehicle is at Slot No: "+ x + " at Ground floor 1\n\n");
             }
@@ -135,7 +146,7 @@ public class Main
                 continue;
             }
         }
-        else if(input==0)
+        else if(input.equals("0"))
         {
             try
             {
@@ -148,6 +159,11 @@ public class Main
                 continue;
             }
         }
+	else
+	{
+	System.out.println("\nEnter a Valid option \n");
+	continue;
+	}
     }
   }
 }

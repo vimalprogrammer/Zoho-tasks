@@ -74,7 +74,7 @@ public class DisplayParking extends ParkSystem
             System.out.println("--------------------------------------------------------------");
         count++;
     }
-        BufferedWriter writer = new BufferedWriter(new FileWriter("myfile.txt", false));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("myfile.txt", true));
         for (int i = 0; i < 80; i++) 
         {
          if (VehiclePark.occupiedSlots[i] != null) 
