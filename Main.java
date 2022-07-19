@@ -19,6 +19,8 @@ public class Main
         System.out.println("Press 5 to The identify the place of the Vehicle");
         System.out.println("Press 0 to Exit\n");
 
+        System.out.print("Enter Your Option: ");
+
         String input = sc.next();
 
         if(input.equals("1"))
@@ -53,11 +55,24 @@ public class Main
               else if (allotedSlot == -2) 
                 System.out.println("\nThe Vehicle with this No. already exists\n");
               else 
-              System.out.println("\nAllocated slot number: " + (allotedSlot + 1)+"\n");
+              {
+                if(allotedSlot<10)
+                System.out.println("\nAllocated slot number: " + (allotedSlot + 1)+ " in Ground Floor 1\n");
+                else if(allotedSlot>10 && allotedSlot<20)
+                System.out.println("\nAllocated slot number: " + (allotedSlot + 1)+ " in Ground Floor 2\n");
+                else if(allotedSlot%10==0 && allotedSlot!=20)
+                {
+                int floor=(allotedSlot/10)-2;
+                System.out.println("\nAllocated slot number: " + (allotedSlot + 1)+ " in " +floor+ "th floor\n");
+                }
+                else
+                {
+                int floor=(allotedSlot/10)-1;                System.out.println("\nAllocated slot number: " + (allotedSlot + 1)+ " in "+ floor+ "th floor\n");
+                }
+              }
 		  }
-              
             }
-            
+              
             catch(Exception e)
             {   
                 System.out.println("\nInvalid Command\n"+e);
