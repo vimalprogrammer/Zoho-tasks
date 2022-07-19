@@ -26,7 +26,7 @@ public class DisplayParking extends ParkSystem
   {
      Vehicle arr[]= VehiclePark.getOccupiedSlots();
      int count=1;
-     System.out.println("Slot No\t| Bike\t| Floor");
+     System.out.println("Slot No\t| Vehicle(Bike)\t| Floor");
      System.out.println("--------------------------------------------------------------");
      int floor=0;
      for(Vehicle i: arr)
@@ -48,7 +48,7 @@ public class DisplayParking extends ParkSystem
         
         if(count==21)
         {
-            System.out.println("\nSlot No\t| vehicle\t| Floor");
+            System.out.println("\nSlot No\t| vehicle(Car)\t| Floor");
             System.out.println("--------------------------------------------------------------");
         }
         if (count>=21) 
