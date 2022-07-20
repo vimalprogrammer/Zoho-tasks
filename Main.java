@@ -32,7 +32,7 @@ public class Main
             }
             catch(Exception e)
             {
-                System.out.println("\nInvalid Command - Parking Slot already Created\n");
+                System.out.println("\nParking Slot already Created\n");
             }
         }
         
@@ -40,7 +40,7 @@ public class Main
         {
             try
             {
-              System.out.print("Enter Register No: ");
+              System.out.print("Enter Vehicle Register No: ");
               String regNo = sc.next();
               System.out.print("Enter Vehicle Type(2/4): ");
               vehType=sc.nextInt();
@@ -57,17 +57,27 @@ public class Main
               else 
               {
                 if(allotedSlot<10)
-                System.out.println("\nAllocated slot number: " + (allotedSlot + 1)+ " in Ground Floor 1\n");
+{
+System.out.print("\n---Parking Details---------------");
+                System.out.print("\nAllocated slot number: " + (allotedSlot + 1)+ "\nFloor details: Ground Floor 1\n---------------------------------\n\n");
+}
                 else if(allotedSlot>10 && allotedSlot<20)
-                System.out.println("\nAllocated slot number: " + (allotedSlot + 1)+ " in Ground Floor 2\n");
+{
+	System.out.print("\n---Parking Details---------------");
+                System.out.print("\nAllocated slot number: " + (allotedSlot + 1)+ "\nFloor details: Ground Floor 2\n----------------------------------------\n\n");
+}
+
                 else if(allotedSlot%10==0 && allotedSlot!=20)
                 {
+			System.out.print("\n---Parking Details---------------");
                 int floor=(allotedSlot/10)-2;
-                System.out.println("\nAllocated slot number: " + (allotedSlot + 1)+ " in " +floor+ "th floor\n");
+                System.out.print("\nAllocated slot number: " + (allotedSlot + 1)+ "\nFloor details: " +floor+ "th floor\n---------------------------------\n\n");
                 }
                 else
                 {
-                int floor=(allotedSlot/10)-1;                System.out.println("\nAllocated slot number: " + (allotedSlot + 1)+ " in "+ floor+ "th floor\n");
+			
+			System.out.print("\n---Parking Details---------------");
+                int floor=(allotedSlot/10)-1;                System.out.print("\nAllocated slot number: " + (allotedSlot + 1)+ "\nFloor details: " + floor+ "th floor\n---------------------------------\n\n");
                 }
               }
 		  }
