@@ -1,8 +1,8 @@
-#include <iostream>   
-#include <conio.h>    //console IO operation
-#include <windows.h>  //for console operation
-#include <iomanip>    //for formatting of tables
-#include <fstream>    //for file handling
+#include <bits/stdc++.h>   
+#include <conio.h>   
+#include <windows.h>  
+#include <iomanip>    
+#include <fstream>    
 
 using namespace std;
 
@@ -24,7 +24,9 @@ public:
   {
     system("cls");
     string uname, pass;
+    cout<<"------------------------------------\n";
     cout << "1.Admin Login\n2.Exit" << endl;
+    cout<<"------------------------------------\n";
     cout<<"\nEnter Choice: ";
     cin >> ch;
     switch (ch)
@@ -32,10 +34,12 @@ public:
     case 1:
     relogin:
       system("cls");
+      cout<<"------------------------------------\n";
       cout << "Enter Username: ";
       cin >> uname;
       cout << "Enter Password: " ;
       cin >> pass;
+      cout<<"------------------------------------\n";
       check = CheckLog(uname, pass);
       if (check == 1)
       {
@@ -84,13 +88,14 @@ public:
   Menu:
     system("cls");
     cout << "***Bus Reservation System***" << endl;
-    cout << "Menu" << endl;
+    cout<<"------------------------------------\n";
     cout << "1.Add Bus" << endl
          << "2.View Bus" << endl
          << "3.Edit Bus" << endl
          << "4.Delete Bus" << endl
          << "5.Logout" << endl
          << "6.Exit And Close" << endl
+         <<"------------------------------------\n"
          <<"\nEnter Your Choice: ";
     cin >> ch;
     switch (ch)
@@ -126,6 +131,7 @@ public:
     system("cls");
     int match = 0;
     cout << "***Bus Reservation System***" << endl;
+    cout<<"------------------------------------\n";
     cout << "Enter Bus Number: ";
     cin >> number;
     cout << "Enter Bus Name: ";
@@ -135,19 +141,21 @@ public:
     cout << "Enter number of seats: ";
     cin >> seats;
     freeseats = seats;
-    cout<< "Enter AC(1) or Non-AC(0): ";
+    cout<< "Enter AC or Non-AC(Yes/No): ";
     cin>>ac;
-    if(ac=="1")
+    transform(ac.begin(), ac.end(), ac.begin(), ::tolower);
+    if(ac=="yes")
     {
       cout<<"How many AC seats available: ";
       cin>>NumberOfAc;
-      cout<<"Enter AC seats From & to(By space separating): ";
+      cout<<"Enter AC seats From & to(Separate by '-'): ";
       cin>>ac_range;
     }
     cout << "Enter departure place: ";
     cin >> dp;
     cout << "Enter destination place: ";
     cin >> ds;
+    cout<<"------------------------------------\n";
     file.open("bus.txt", ios::in);
     if (!file)
     {
@@ -227,7 +235,7 @@ public:
     cout << "***Bus Reservation System***" << endl;
     file.open("bus.txt");
     if (!file)
-    { //if file doesn't exists
+    { 
       cout << "No Record Exists" << endl;
       file.close();
     }
@@ -271,7 +279,7 @@ public:
     cout << "***Bus Reservation System***" << endl;
     file.open("bus.txt", ios::in);
     if (!file)
-    { //if file doesn't exists
+    {
       cout << "No Record Exists" << endl;
       file.close();
     }
@@ -321,6 +329,7 @@ public:
           file1 >> t_number >> t_name >> t_seats >> t_driverName >> t_freeseats >> t_dp >> t_ds;
           if (numbertobeedited == t_number)
           {
+            cout<<"------------------------------------\n";
             cout << "Enter new name for the bus: " ;
             cin >> t_name;
             cout << "Enter new driver's name for the bus: ";
@@ -332,6 +341,7 @@ public:
             cin >> t_dp;
             cout << "Enter new destination place: ";
             cin >> t_ds;
+            cout<<"------------------------------------\n";
             file2 << endl
                   << t_number << " " << t_name << " " << t_seats << " " << t_driverName << " " << t_freeseats << " " << t_dp << " " << t_ds;
             match = 1;
@@ -390,20 +400,9 @@ public:
             file2 << endl
                   << t_number << " " << t_name << " " << t_seats << " " << t_driverName << " " << t_freeseats << " " << t_dp << " " << t_ds;
           }
+
           else
-          {
-            if (t_freeseats != t_seats)
-            {
-              cout << "Bus cannot be deleted" << endl;
-              file1.close();
-              file2.close();
-              remove("temp.txt");
-              getch();
-              Menu();
-            }
-            else
-              exist = 1;
-          }
+            exist = 1;
         }
         else
         {
@@ -428,7 +427,7 @@ public:
   }
 };
 
-int main(void)
+int main()
 {
   int ch, ch2;
   Bus b;
