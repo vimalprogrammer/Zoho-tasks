@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Bus 
+public class Bus extends Main
 {
   public int seats;
   public int freeseats;
@@ -25,8 +25,8 @@ public class Bus
   {
 	String uname;
 	String pass;
-	System.out.print("------------------------------------\n");
-	System.out.print("1.Admin Login\n2.Exit");
+	System.out.print("\n------------------------------------\n");
+	System.out.print("1.Admin Login\n2.User Login\n3.Exit");
 	System.out.print("\n");
 	System.out.print("------------------------------------\n");
 	System.out.print("\nEnter Choice: ");
@@ -48,16 +48,20 @@ public class Bus
 			{
 			  System.out.print("*");
 			}
+			System.out.print("\n------------------------------------\n");
 			Menu();
 	  }
 	  else
 	  { 
-			System.out.print("Sorry Invalid Credentials");
+			System.out.print("\nSorry Invalid Credentials");
 			Start();
 	  }
 
 	  break;
 	case 2:
+	  login();
+	  break;
+	case 3:
 	  System.exit(0);
 	  break;
 	default:
@@ -150,57 +154,94 @@ public void NewBus()
 		System.out.print("------------------------------------\n");
 		System.out.print("Enter Bus Number: ");
 		number = sc.next();
-		System.out.print("Enter Bus Name: ");
-		name = sc.next();
-		System.out.print("Enter number of seats: ");
-		seats = sc.nextInt();
-		freeseats = seats;
-		System.out.print("Enter Sleeper(y/n): ");
-		ac = sc.next();
-		if (ac.equals("y"))
+		int flag=0;
+		//---------------------------------------------------------------------
+		try
 		{
-		  System.out.print("How many Sleeper seats available: ");
-		  NumberOfAc = sc.nextInt();
-		  System.out.print("Enter Sleeper seats range(Separate by '-'): ");
-		  ac_range = sc.next();
-		}
-	 		System.out.print("Enter departure place: ");
-	 		dp=sc.next();
-	 		System.out.print("Enter destination place: ");
-	 		ds=sc.next();		
-	 		//System.out.print("NewBus");
-	    try 
-	    {
-            FileWriter Writer
-                = new FileWriter("bus.txt",true);
-            Writer.write(number + " ");
-            Writer.write(name+ " ");
-            Writer.write(seats+ " ");
-            Writer.write(ac+ " ");
-            Writer.write(dp+ " ");
-            Writer.write(ds+ " "+"\n");            
-            Writer.close();
-            System.out.println("Successfully written.");
-            Menu();
-        }
-        catch (IOException e) 
-        {
-            System.out.println("An error has occurred.");
-            Menu();//----1
-            e.printStackTrace();
-        }
+		    BufferedReader br = new BufferedReader(new FileReader("bus.txt"));
+		    String line;
+	 		while ((line = br.readLine()) != null) 
+	 		{
+		    	String[] splitStr = line.split("\\s+");
+				if(splitStr[0].equals(number))
+				{
+					flag=1;
+					//System.out.println(line);
+					continue;
+	        	}
+	 		}	
+			br.close();
+	 		if(flag==1)
+	 		{
+	 			System.out.print("------------------------------------\n");
+	 			System.out.println("The Bus with this already exists !!!");
+	 			System.out.print("------------------------------------\n");
+	 			Menu(); 
+	 		}
+ 		}
+ 		catch(Exception e)
+ 		{
+ 			System.out.print("Error occurred");
+ 			Menu();
+ 		}
+		//--------------------------------------------------------------------
+		if(flag==0)
+		{
+			System.out.print("Enter Bus Name: ");
+			name = sc.next();
+			System.out.print("Enter number of seats: ");
+			seats = sc.nextInt();
+			freeseats = seats;
+			System.out.print("Enter Sleeper(y/n): ");
+			ac = sc.next();
+			if (ac.equals("y"))
+			{
+			  System.out.print("How many Sleeper seats available: ");
+			  NumberOfAc = sc.nextInt();
+			  System.out.print("Enter Sleeper seats range(Separate by '-'): ");
+			  ac_range = sc.next();
+			}
+		 		System.out.print("Enter departure place: ");
+		 		dp=sc.next();
+		 		System.out.print("Enter destination place: ");
+		 		ds=sc.next();		
+		 		//System.out.print("NewBus");
+		    try 
+		    {
+	            FileWriter Writer
+	                = new FileWriter("bus.txt",true);
+	            Writer.write(number + " ");
+	            Writer.write(name+ " ");
+	            Writer.write(seats+ " ");
+	            Writer.write(ac+ " ");
+	            Writer.write(dp+ " ");
+	            Writer.write(ds+ " "+"\n");            
+	            Writer.close();
+				System.out.print("------------------------------------\n");
+	            System.out.println("Successfully written.");
+	            Menu();
+	        }
+	        catch (IOException e) 
+	        {
+	            System.out.println("An error has occurred.");
+	            Menu();//----1
+	            e.printStackTrace();
+	        }
+	    }
 }
 
 public void ViewBus()
 {
 		int ch;
-		System.out.print("Bus Reservation System");
+		System.out.print("Bus Reservation System\n");
+		System.out.print("------------------------------------\n");
 		System.out.print("\n");
 		System.out.print("1.Single Bus");
 		System.out.print("\n");
 		System.out.print("2.All Buses");
 		System.out.print("\n");
 		System.out.print("3.Go Back");
+		System.out.print("\n------------------------------------\n");
 		System.out.print("\n");
 		System.out.print("\nEnter Your Choice: ");
 		ch=sc.nextInt();
@@ -223,12 +264,11 @@ public void ViewBus()
 
 public void SingleBusView()
 {
-	 try 
+	 try (BufferedReader in = new BufferedReader(new FileReader("bus.txt"));)
 	 {
 	 	  System.out.print("Enter bus No: ");
 	 		number=sc.next();
 	 		ArrayList<String> lines = new ArrayList();
-    	BufferedReader in = new BufferedReader(new FileReader("bus.txt"));
     	String line;
     // read lines in file
     	while ((line = in.readLine())!=null)
@@ -241,9 +281,10 @@ public void SingleBusView()
 				String[] splitStr = i.split("\\s+");
 				if(splitStr[0].equals(number))
 				{
+					System.out.print("\n------------------------------------\n");
 					for(String str : splitStr)
 							System.out.print(str+" ");					
-
+					System.out.print("\n------------------------------------\n");
 						break;
 				}
 	    }
@@ -271,10 +312,14 @@ public void AllBusView()
         	lines.add(line);
     	}
     	in.close();
+    	System.out.print("------------------------------------\n");
+    	System.out.print("B.no name Sts S Dep Des\n");
+    	System.out.print("------------------------------------\n");
 	    for(String i: lines)
 	    {
 	    	System.out.println(i);
 	    }
+	    System.out.print("------------------------------------\n");
 	    Menu();
 		}
 		catch (Exception e) 
@@ -327,7 +372,7 @@ public void EditBus()
 			 		System.out.print("Edit destination place: ");
 			 		ds=sc.next();	
 					line=line+ds+" ";
-		            System.out.println("Successfully modified");
+		            System.out.println("\nSuccessfully modified !");
 		 		} 
 				Writer2.write(line+"\n");
 		}
@@ -403,5 +448,186 @@ public void DeleteBus()
         Menu();//--------5
         e.printStackTrace();
     }  
+}
+
+
+
+
+public void SignUp()
+{
+		System.out.print("\n***New User Register***");
+		System.out.print("\n");
+		System.out.print("------------------------------------\n");
+		System.out.print("Enter Firstname: ");
+		String fname = sc.next();
+		System.out.print("Enter Lastname: ");
+		String lname = sc.next();
+		System.out.print("Enter email: ");
+		String email = sc.next();
+		System.out.print("Enter phone: ");
+		String phone = sc.next();
+		System.out.print("Enter Gender: ");
+		String gender = sc.next();
+		System.out.print("Enter password: ");
+		String pass = sc.next();
+
+
+	    try 
+	    {
+            FileWriter Writer3
+                = new FileWriter("user.txt",true);
+            Writer3.write(fname + " ");
+            Writer3.write(lname+ " ");
+            Writer3.write(email+ " ");
+            Writer3.write(phone+ " ");
+            Writer3.write(gender+ " ");
+            Writer3.write(pass+ " "+"\n");            
+            Writer3.close();
+            System.out.println("Successfully written.");
+            login();
+        }
+        catch (IOException e) 
+        {
+            System.out.println("An error has occurred.");
+            Menu();//----1
+            e.printStackTrace();
+        }	
+}
+
+
+public int CheckLog2(String uname, String pass)
+{
+   boolean flag = false;
+	 try 
+	 {
+			File f1=new File("user.txt");
+			Scanner Reader = new Scanner(f1);
+			while (Reader.hasNextLine()) 
+			{
+				String str = Reader.nextLine();
+				String[] data = str.split("\\s+");
+				if(data[2].equals(uname) && data[5].equals(pass))
+				{
+					flag=true;
+					break;
+				}
+	    }
+	    Reader.close();
+		}
+		catch (FileNotFoundException e) 
+		{
+			System.out.println("An error has occurred.");
+			// Start();
+			e.printStackTrace();
+    }
+    if(flag)
+  		return 1;
+  	return 0;
+}
+
+
+public void logout()
+{
+    System.out.print("\n1.Logout\n2.Exit\n");
+	System.out.print("Enter Choice : ");
+	int ch=sc.nextInt();
+	switch(ch)
+	{
+	case 1:
+		login();
+		break;
+	case 2:
+		System.exit(0);
+		break;
+	default:
+		System.out.print("Invalid choice...");
+	    logout();
+	    System.out.print("\n");
+
+	}
+}
+
+
+public void ViewTicket()
+{
+	System.out.println("\nView Ticket");
+	
+}
+public void BookTicket()
+{
+	System.out.println("\nBook Ticket");
+}
+public void CancelTicket()
+{
+	System.out.println("\nCancel Ticket");
+}
+
+
+public void login()
+{
+	System.out.print("\n1.Sign in\n2.New User Registration\n3.Go Back");
+	System.out.print("\n------------------------------------\n");
+	System.out.print("\nEnter Choice: ");
+	ch = sc.nextInt();
+	switch (ch)
+	{
+	case 1:
+	  System.out.print("------------------------------------\n");
+	  System.out.print("Enter Email: ");
+	  String email = sc.next();
+	  System.out.print("Enter Password: ");
+	  String pass = sc.next();
+	  System.out.print("------------------------------------\n");
+	  int check = CheckLog2(email, pass);
+	  if (check == 1)
+	  {
+			System.out.print("Access granted");
+			for (int i = 0; i < 10; i++)
+			{
+			  System.out.print("*");
+			}
+			System.out.println("\nLogin Successfull");
+			System.out.print("------------------------------------\n");
+			System.out.print("1.View Ticket\n2.Book Ticket\n3.Cancel Ticket\n4.Go Back\n");	
+			int uch;
+			System.out.print("Enter choice: ");
+			uch=sc.nextInt();
+		    switch (ch)
+		    {
+			    case 1:
+			      ViewTicket();
+			      break;
+			    case 2:
+			      BookTicket();
+			      break;
+			    case 3:
+			      CancelTicket();
+			      break;
+			    case 4:
+			      Start();
+			      break;
+			    default:
+			      System.out.println("\nInvalid Choice\n");
+		   }
+	  }
+	  else
+	  { 
+			System.out.print("Sorry Invalid Credentials\n");
+			System.out.print("------------------------------------\n");
+			login();
+	  }
+
+	  break;
+	case 2:
+		SignUp();
+		break;
+	case 3:
+		Start();
+		break;
+	default:
+	    System.out.print("Invalid choice...");
+	    login();
+	    System.out.print("\n");
+	}
 }
 }
