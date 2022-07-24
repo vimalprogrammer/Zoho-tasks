@@ -1,0 +1,4 @@
+1 pk1 40 y tr ch 
+2 pk2 50 n tr ch 
+3 pk3 20 y ch kl 
+4 pk4 40 y tr ch 

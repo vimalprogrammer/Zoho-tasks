@@ -1,0 +1,7 @@
+ram r r@gmail.com 98786987 male 123 
+arun v a@gmail.com 78967690 male 123 
+vimal m v@gmail.com 978696 male 123 
+1 1 1 1 1 1
+vars 123 v@gmail.com 96785 female 123
+vis p v@g.com 9887 male 123 
+
