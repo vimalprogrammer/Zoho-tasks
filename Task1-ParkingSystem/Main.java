@@ -4,7 +4,7 @@ import java.io.FileWriter;
 
 public class Main 
 {
-   static int vehType;
+  static int vehType;
   public static void main(String[] arguments) 
   {
     Scanner sc = new Scanner(System.in);
@@ -44,10 +44,10 @@ public class Main
               String regNo = sc.next();
               System.out.print("Enter Vehicle Type(2/4): ");
               vehType=sc.nextInt();
-		  if(vehType != 2 && vehType != 4)
-			System.out.print("\nSorry, Only 2 or 4 Wheeler Vehicles allowed\n");
-		  else
-		  {
+              if(vehType != 2 && vehType != 4)
+              System.out.print("\nSorry, Only 2 or 4 Wheeler Vehicles allowed\n");
+              else
+              {
               Vehicle vehicle = new Vehicle(regNo);
               int allotedSlot = VehiclePark.allotSlot(vehicle);
               if (allotedSlot == -1) 
@@ -57,31 +57,30 @@ public class Main
               else 
               {
                 if(allotedSlot<10)
-{
-System.out.print("\n---Parking Details---------------");
+                {
+                System.out.print("\n---Parking Details---------------");
                 System.out.print("\nAllocated slot number: " + (allotedSlot + 1)+ "\nFloor details: Ground Floor 1\n---------------------------------\n\n");
-}
+                }
                 else if(allotedSlot>10 && allotedSlot<20)
-{
-	System.out.print("\n---Parking Details---------------");
+                {
+                System.out.print("\n---Parking Details---------------");
                 System.out.print("\nAllocated slot number: " + (allotedSlot + 1)+ "\nFloor details: Ground Floor 2\n----------------------------------------\n\n");
-}
+                }
 
                 else if(allotedSlot%10==0 && allotedSlot!=20)
                 {
-			System.out.print("\n---Parking Details---------------");
+			          System.out.print("\n---Parking Details---------------");
                 int floor=(allotedSlot/10)-2;
                 System.out.print("\nAllocated slot number: " + (allotedSlot + 1)+ "\nFloor details: " +floor+ "th floor\n---------------------------------\n\n");
                 }
                 else
                 {
-			
-			System.out.print("\n---Parking Details---------------");
+			          System.out.print("\n---Parking Details---------------");
                 int floor=(allotedSlot/10)-1;                System.out.print("\nAllocated slot number: " + (allotedSlot + 1)+ "\nFloor details: " + floor+ "th floor\n---------------------------------\n\n");
                 }
               }
-		  }
-            }
+		        }
+          }
               
             catch(Exception e)
             {   

@@ -4,4 +4,14 @@ vimal m v@gmail.com 978696 male 123
 1 1 1 1 1 1
 vars 123 v@gmail.com 96785 female 123
 vis p v@g.com 9887 male 123 
-
+sam s s@gmail.com 87899 male 123 
+vushnu r f@jm.com 896896 male 123 
+sam s sam2gmail.com 87987 male 111 
+john cena j@gmail.com 9999 male 121 
+vimal m vi@gmail.com 9867585 male 123 
+ram c ram@gmail.com 976765 male 123 
+vimal m vi@gmail.com 9879798 male 123 
+sam s sam@yahoo.com 9676854 male 123 
+vimal m vi@gmail.com 9688696 male 123 
+vars k va@gmail.com 9786995 female 121 
+tom t t@gmail.com 9087878 male 123 

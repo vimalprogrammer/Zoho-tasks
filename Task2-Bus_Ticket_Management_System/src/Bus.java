@@ -1,4 +1,10 @@
 import java.util.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
 import java.io.*;
 
 public class Bus
@@ -32,7 +38,7 @@ public class Bus
 	String uname;
 	String pass;
 	System.out.print("\n------------------------------------\n");
-	System.out.print("1.Admin Login\n2.User Login\n3.Exit");
+	System.out.print("1.Admin Login\n2.User Login\n3.Exit\n4.DbEX");
 	System.out.print("\n");
 	System.out.print("------------------------------------\n");
 	System.out.print("\nEnter Choice: ");
@@ -69,6 +75,9 @@ public class Bus
 	case 3:
 	  System.exit(0);
 	  break;
+	case 4:
+		  dbEx();
+		  break;
 	default:
 	  System.out.print("Invalid choice...");
 	  Start();
@@ -179,7 +188,7 @@ public void NewBus()
  		if(flag==1)
  		{
  			System.out.print("------------------------------------\n");
- 			System.out.println("The Bus with this already exists !!!");
+ 			System.out.println("The Bus with this Number already exists !!!");
  			System.out.print("------------------------------------\n");
  			Menu(); 
  		}
@@ -229,6 +238,47 @@ public void NewBus()
  		System.out.print("Enter destination place: ");
  		ds=sc.next();		
  		//System.out.print("NewBus");
+ 		
+ 		//------------------------------------------------------------
+ 		
+
+	//---------------------------------------------------------------------
+ 		
+ 	    Connection c = null;
+ 	    Statement stmt = null;
+ 	    try {
+ 	       Class.forName("org.postgresql.Driver");
+ 	       c = DriverManager
+ 	          .getConnection("jdbc:postgresql://localhost:5432/postgres",
+ 	          "postgres", "1234");
+ 	       c.setAutoCommit(false);
+ 	       System.out.println("Opened ~~database~~~ successfully");
+ 	       
+ 	       int n=Integer.parseInt(number);
+ 	       String a=name;
+ 	       String b=String.valueOf(seats);
+ 	       String d=ac;
+ 	       String e=dp;
+ 	       String f=ds;
+ 	       
+ 	       stmt = c.createStatement();
+ 	       String sql = "INSERT INTO Bus_Details (BUS_ID,BUS_NAME,TOTAL_SEATS,AC_or_NON_AC,DEPARTURE,DESTINATION) "
+ 	          + "VALUES ('"+n+"','"+a+"','"+b+"','"+d+"','"+e+"','"+f+"');";
+ 	       //@t_user, @t_mail, @t_ph , @t_gender, @sn
+ 	       stmt.executeUpdate(sql);
+
+ 	       stmt.close();
+ 	       c.commit();
+ 	       c.close();
+ 	    } catch (Exception e) {
+ 	       System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+ 	       System.exit(0);
+ 	    }
+ 	    System.out.println("Bus Records created successfully");
+ 
+//---------------------------------------------------------------------- 		
+ 	    
+//----------------------------------------------------------------- 	    
 	    try 
 	    {
             FileWriter Writer = new FileWriter("bus.txt",true);
@@ -473,8 +523,6 @@ public void DeleteBus()
 }
 
 
-
-
 public void SignUp()
 {
 		System.out.print("\n***New User Register***");
@@ -492,6 +540,45 @@ public void SignUp()
 		String gender = sc.next();
 		System.out.print("Enter password: ");
 		String pass = sc.next();
+//-----------------------------------------------------
+
+
+	 	   Connection c = null;
+		    Statement stmt = null;
+		    try {
+		       Class.forName("org.postgresql.Driver");
+		       c = DriverManager
+		          .getConnection("jdbc:postgresql://localhost:5432/postgres",
+		          "postgres", "1234");
+		       c.setAutoCommit(false);
+		       System.out.println("Opened ~~database~~~ successfully");
+		       
+		       String a=fname;
+		       String b=lname;
+		       String d=email;
+		       String f=phone;
+		       String g=gender;
+		       String h=pass;
+		       
+		       stmt = c.createStatement();
+		       String sql = "INSERT INTO User_Details (FIRST_NAME,LAST_SEATS,EMAIL,PHONE,GENDER,PASSWORD) "
+		          + "VALUES ('"+a+"','"+b+"','"+d+"','"+f+"','"+g+"','"+h+"');";
+		       //@t_user, @t_mail, @t_ph , @t_gender, @sn
+		       stmt.executeUpdate(sql);
+
+		       stmt.close();
+		       c.commit();
+		       c.close();	
+		    }
+		    catch ( Exception e ) {
+		 	       System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+		 	       System.exit(0);
+		 	    }
+		System.out.println("Table for user details created:) successfully!");
+		
+		
+//------------------------------------------------------		
+		
 
 
 	    try 
@@ -680,6 +767,7 @@ void confirmTkt(String num)
 			br3.write(t_user+"\n");
 			br3.write(t_ph+"\n"); 
 			br3.write(t_mail+"\n"); 
+			br3.write(num+"\n");
 			br3.write(sn+"\n");
 			br3.close();
 
@@ -756,12 +844,46 @@ void checkTktAv(String dep,String des)
 
 public void ViewTicket()
 {
+	//--------------------------------------------
+    Connection c = null;
+    Statement stmt = null;
+    try {
+       Class.forName("org.postgresql.Driver");
+       c = DriverManager
+          .getConnection("jdbc:postgresql://localhost:5432/postgres",
+          "postgres", "1234");
+       c.setAutoCommit(false);
+       System.out.println("Opened ~~database~~~ successfully");
+       String a=t_user;
+       String b=t_mail;
+       String d=t_ph;
+       String e=t_gender;
+       int f=sn;
+       
+       stmt = c.createStatement();
+       String sql = "INSERT INTO Ticket_Bookings (NAME,MAIL,PHONE,GENDER,TICKET_NO) "
+          + "VALUES ('"+a+"','"+b+"','"+d+"','"+e+"','"+f+"');";
+       //@t_user, @t_mail, @t_ph , @t_gender, @sn
+       stmt.executeUpdate(sql);
+
+
+       stmt.close();
+       c.commit();
+       c.close();
+    } catch (Exception e) {
+       System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+       System.exit(0);
+    }
+    
+    System.out.println("Records created successfully");
+	
+	//--------------------------------------------------
 	try
 	{
 		BufferedReader br4=new BufferedReader(new FileReader("user"+t_user+".txt"));
 		String line3;
 		System.out.println("----------------------------------");
-		System.out.print("Name\tPhone\tEmail\tTicket No\n");
+		System.out.print("Name\tPchone\tEmail\tBus_No.\tTicket_No.\n");
 		while((line3=br4.readLine())!=null)
 		{
 			System.out.print(line3+"\t");
@@ -856,7 +978,7 @@ public void login()
 			SignUp();
 			break;
 		case 3:
-			login();
+			Start();
 			break;
 		default:
 		    System.out.print("Invalid choice...");
@@ -865,4 +987,9 @@ public void login()
 	}
 
 	}
+void dbEx()
+{
+	System.out.print("dbEX called");
 }
+}
+

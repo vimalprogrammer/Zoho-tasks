@@ -1,10 +1,10 @@
 public class CheckSlot
 {
-    private ParkSystem VehiclePark;
-    public CheckSlot(ParkSystem VehiclePark)
-    {
-        this.VehiclePark=VehiclePark;
-    }
+    // private ParkSystem VehiclePark;
+    // public CheckSlot(ParkSystem VehiclePark)
+    // {
+    //     this.VehiclePark=VehiclePark;
+    // }
 
 //   public int getSlotNumberOfVehicle(String regNo)
 //   {
