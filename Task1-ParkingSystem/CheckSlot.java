@@ -35,7 +35,6 @@ public class CheckSlot
     return -1;
 }
   
-  
 //   public void displayStatus(){
 //      Vehicle arr[]= VehiclePark.getOccupiedSlots();
 //      int count=0;
