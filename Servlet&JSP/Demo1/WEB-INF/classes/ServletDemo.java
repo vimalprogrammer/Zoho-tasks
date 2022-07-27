@@ -20,10 +20,14 @@ public class ServletDemo extends HttpServlet
 			
 			int result=n1+n2;
 
-			req.setAttribute("r",result);
+			res.sendRedirect("v?result="+result);//URL Rewriting
+			// req.setAttribute("r",result);
 
-			RequestDispatcher rd=req.getRequestDispatcher("v"); 
-			rd.forward(req,res);
+			// RequestDispatcher rd=req.getRequestDispatcher("v"); 
+			// rd.forward(req,res);
+
+
+
 			// PrintWriter out=res.getWriter();
 			// out.print("result " + result);
 		}

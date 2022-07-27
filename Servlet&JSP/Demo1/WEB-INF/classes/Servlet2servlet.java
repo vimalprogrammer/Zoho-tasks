@@ -15,10 +15,12 @@ public class Servlet2servlet extends HttpServlet
 	public void doGet(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{
 		
-		int sol=(int)req.getAttribute("r");//it is object so converting into string
-		PrintWriter out=res.getWriter();
+		// int sol=(int)req.getAttribute("r");//it is object so converting into string
 
-		out.println("Result(Servlet 2 Servlet) : "+sol);
+		int sol=Integer.parseInt(req.getParameter("result"));
+		sol=sol*sol;
+		PrintWriter out=res.getWriter();
+		out.println("Result(Servlet 2 Servlet) : "+ sol);
 
 	}
 }
