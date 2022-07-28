@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Cookie;
+
 
 @WebServlet("/add")
 public class ServletDemo extends HttpServlet 
@@ -20,16 +24,24 @@ public class ServletDemo extends HttpServlet
 			
 			int result=n1+n2;
 
-			res.sendRedirect("v?result="+result);//URL Rewriting
-			// req.setAttribute("r",result);
+			// PrintWriter out=res.getWriter();
+			// out.print("result " + result);
 
 			// RequestDispatcher rd=req.getRequestDispatcher("v"); 
 			// rd.forward(req,res);
 
+			//res.sendRedirect("v?result="+result);//URL Rewriting
+			// req.setAttribute("r",result);
 
+			//HttpSession session = req.getSession();
+			//session.setAttribute("r",result);//key, value
 
-			// PrintWriter out=res.getWriter();
-			// out.print("result " + result);
+			
+			Cookie cookie = new Cookie("r",result+"");
+			res.addCookie(cookie);
+
+			res.sendRedirect("v");
+
 		}
 		catch(Exception e)
 		{
