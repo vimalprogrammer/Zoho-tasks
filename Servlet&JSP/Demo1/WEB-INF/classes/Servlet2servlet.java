@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Cookie;
 import javax.servlet.*;  
 
-//@WebServlet("/v")
+@WebServlet("/v")
 public class Servlet2servlet extends HttpServlet
 {
 	public void doGet(HttpServletRequest req,HttpServletResponse res) throws IOException
@@ -25,6 +25,8 @@ public class Servlet2servlet extends HttpServlet
 		//PrintWriter out=res.getWriter();
 
 		//HttpSession session = req.getSession();
+
+		res.setContentType("text/html");
 
 		int sol=1;
 		Cookie cookies[]=req.getCookies();
@@ -39,18 +41,22 @@ public class Servlet2servlet extends HttpServlet
 	 	sol=sol*sol;
 		//out.println("Result(Servlet 2 Servlet) : "+ sol);
 		PrintWriter out=res.getWriter();
-		out.println("Result(Servlet 2 Servlet) Using Session : "+ sol);
 
+		out.println("<html><body bgcolor='orange'>");
+
+		out.println("Result(Servlet 2 Servlet) Using Session : "+ sol);
+		out.print("<br>Hello ");
 
 		ServletContext ctxt=getServletContext();
 		ServletConfig cnfg=getServletConfig();		
-		String s1=cnfg.getInitParameter("name");//config
+		// String s1=cnfg.getInitParameter("name");//config
+		String s1=ctxt.getInitParameter("name");
 		String s2=ctxt.getInitParameter("college");
 		String s3=ctxt.getInitParameter("crush");
 		String s4=ctxt.getInitParameter("friend");
 
-		out.print(s1+"\n"+s2+"\n"+s3+"\n"+s4);
-
+		out.print(s1+"<br>"+s2+"<br>"+s3+"<br>"+s4);
+		out.println("</body></html>");
 
 
 	}   

@@ -14,7 +14,7 @@ import javax.servlet.*;
 
 
 
-//@WebServlet("/add")
+@WebServlet("/add")
 public class ServletDemo extends HttpServlet 
 {
 	public void doGet(HttpServletRequest req,HttpServletResponse res) 
