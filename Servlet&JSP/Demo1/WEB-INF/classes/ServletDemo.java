@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Cookie;
+import javax.servlet.*;  
 
 
-@WebServlet("/add")
+
+//@WebServlet("/add")
 public class ServletDemo extends HttpServlet 
 {
 	public void doGet(HttpServletRequest req,HttpServletResponse res) 

@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Cookie;
+import javax.servlet.*;  
 
-@WebServlet("/v")
+//@WebServlet("/v")
 public class Servlet2servlet extends HttpServlet
 {
 	public void doGet(HttpServletRequest req,HttpServletResponse res) throws IOException
@@ -39,6 +40,17 @@ public class Servlet2servlet extends HttpServlet
 		//out.println("Result(Servlet 2 Servlet) : "+ sol);
 		PrintWriter out=res.getWriter();
 		out.println("Result(Servlet 2 Servlet) Using Session : "+ sol);
+
+
+		ServletContext ctxt=getServletContext();
+		ServletConfig cnfg=getServletConfig();		
+		String s1=cnfg.getInitParameter("name");//config
+		String s2=ctxt.getInitParameter("college");
+		String s3=ctxt.getInitParameter("crush");
+		String s4=ctxt.getInitParameter("friend");
+
+		out.print(s1+"\n"+s2+"\n"+s3+"\n"+s4);
+
 
 
 	}   

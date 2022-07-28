@@ -1,5 +1,6 @@
 ==================================================
-
+Demo Codes
+==================================================
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServlet;
@@ -53,12 +54,38 @@ public class AddServlet  extends HttpServlet
 	<url-pattern>/add</url-pattern>
 </servlet-mapping>
 
-======================================
+=======================================
+----------------------------------------
+Apache Tomcat
+----------------------------------------
+What is Apache and Tomcat used for?
+Apache Tomcat, also known as Tomcat Server, proves to be a popular choice for web developers building and maintaining dynamic websites and applications based on the Java software platform.
+Tomcat provides dynamic content by employing Java-based logic, while the Apache web server's primary purpose is to simply serve up static content such as HTML, images, audio and text.
+-----------------------------------------
+What is servlet in Java with example?
+Simply put, a Servlet is a class that handles requests, processes them and reply back with a response. For example, we can use a Servlet to collect input from a user through an HTML form, query records from a database, and create web pages dynamically.
+--------------------------------------------
+What is the main function of servlet methods doGet () and doPost ()?
+The doGet() method is used for getting the information from server while the doPost() method is used for sending information to the server.
+---------------------------------------------
+HttpServletRequest Vs HttpServletResponse
+The HttpServletRequest object can be used to retrieve incoming HTTP request headers and form data. The HttpServletResponse object can be used to set the HTTP response headers (e.g., content-type) and the response message body.
+---------------------------------------------
+What is HttpSession in servlet?
+public interface HttpSession. Provides a way to identify a user across more than one page request or visit to a Web site and to store information about that user. The servlet container uses this interface to create a session between an HTTP client and an HTTP server.
+-----------------------------------------------
+What is a cookie in servlet?
+Creates a cookie, a small amount of information sent by a servlet to a Web browser, saved by the browser, and later sent back to the server. A cookie's value can uniquely identify a client, so cookies are commonly used for session management.
+------------------------------------------------
 
+----------------------------------------------
+ServletConfig Vs Servlet Context
+----------------------------------------------
+The ServletConfig parameters are specified for a particular servlet and are unknown to other servlets. It is used for intializing purposes.
 
+The ServletContext parameters are specified for an entire application outside of any particular servlet and are available to all the servlets within that application. It is application scoped and thus globally accessible across the pages.
+=======================================
 
-
-javac -cp "C:\apache-tomcat-9\webapps\Demo1\WEB-INF\lib\*" classes\*.java
-
+javac -cp "C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\Demo1\WEB-INF\lib\*" classes\*.java
 
 
