@@ -89,6 +89,8 @@ The ServletContext parameters are specified for an entire application outside of
 javac -cp "C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\Demo1\WEB-INF\lib\*" classes\*.java
 
 
+//Bus Management Console
+javac -cp "C:\Users\msvim\OneDrive\Desktop\Task2-Bus_Ticket_Management_System\jars\*" src\*.java
 
 
 

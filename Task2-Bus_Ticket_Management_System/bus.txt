@@ -5,3 +5,4 @@
 6 pk6 60 n tr ch 
 5 pk5 50 n tli ch 
 10 pk10 50 n tn kl 
+8 pk8 45 n tn kl 
