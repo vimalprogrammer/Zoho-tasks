@@ -14,6 +14,31 @@
 </head>
 <body>
 
+<%
+
+//     out.println("<div style='position: absolute; top: 0; right: 1; width: 100px; text-align:right;'><br><br><br><br><br><br><br>");
+//     out.println("<a href='../logout_user.jsp' style='font-size:20px;'>Logout</a><br>");
+//     out.println("</div>");
+
+// response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+// response.setHeader("Pragma", "no-cache"); 
+// response.setDateHeader("Expires", 0);
+
+//response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+
+out.println("<div style='position: absolute; top: 0; right: 1; width: 100px; text-align:right;'><br><br><br><br><br><br><br>");
+out.println("<a href='../logout_user.jsp' style='font-size:20px;'>Logout</a><br>");
+out.println("</div>");
+
+
+if(session.getAttribute("userid")==null)
+{
+    response.sendRedirect("../login1.jsp");
+}
+
+%>
+
+
 </center>
 <% out.println("<div class='tkts'><br><br><center> Avilable Buses <br><br><br></div>");%>
 <%@ page import = "java.sql.*" %>
@@ -50,14 +75,28 @@
 <%
 try
 {
- String departure = request.getParameter("dep");
- String destination = request.getParameter("des");
+ 
+ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+ String departure1 = request.getParameter("dep");
+ String destination1 = request.getParameter("des");
 
-// session.setAttribute("dep1",departure1);
-// session.setAttribute("des1",destination1);  
+session.setAttribute("dep1",departure1);
+session.setAttribute("des1",destination1);  
 
-//  String departure=String.valueOf(session.getAttribute("dep1"));
-//  String destination=String.valueOf(session.getAttribute("des1"));
+ String departure=String.valueOf(session.getAttribute("dep1"));
+ String destination=String.valueOf(session.getAttribute("des1"));
+
+ if(departure.equals("") || destination.equals(""))
+ {
+     String message = "Fields Can't be empty..!";
+     request.setAttribute("message", message);
+     request.getRequestDispatcher("book_ticket1.jsp").forward(request, response);
+ }
+
+ // if(departure1==null || destination1==null)
+ // {
+ //    response.sendRedirect("avail_ticket.jsp");
+ // }
 
  Class.forName("org.postgresql.Driver").newInstance();
  Connection c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres", "1234");
@@ -69,7 +108,7 @@ try
  {
     //out.println("AvailTKt in");
     //debugging purpose
-     int bus_no = rs.getInt("bus_id");
+     String bus_no = rs.getString("bus_id");
      String bus_name = rs.getString("bus_name");
      String seats = rs.getString("total_seats");
      String sleeper = rs.getString("ac_or_non_ac");
@@ -127,6 +166,7 @@ catch(Exception e)
         </center>
     </form>
 <br><br>
+<center><p>${message}</p>
 <center><a href="#" onclick="javascript:window.history.back(-1);return false;">Back</a></center>
 </center>
 </body>

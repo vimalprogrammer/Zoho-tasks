@@ -4,11 +4,32 @@
 <head>
 	<meta charset="UTF-8">
     <title>Bus Details</title>
+    <style>
+    .view {
+      text-align: center;
+      border: 3px solid green;
+    }
+    </style>
 </head>
-<body bgcolor="Lightskyblue">
+<body bgcolor="lightyellow">
+
+<div class="view"><center><br><h3>Edit Bus Details</h3><br></center></div>
+
+<%
+    //response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+
+    out.println("<div style='position: absolute; top: 0; right: 1; width: 100px; text-align:right;'><br><br><br><br><br><br><br>");
+    out.println("<a href='../logout_admin.jsp' style='font-size:20px;'>Logout</a><br>");
+    out.println("</div>");
+// response.setHeader("Pragma", "no-cache"); 
+// response.setDateHeader("Expires", 0);
+
+if(session.getAttribute("userid")==null)
+{
+    response.sendRedirect("../admin.jsp");
+}
+%>
     <br>
-    <br><br><br><br>
-    <center><h2>Edit Bus Details</h2></center>
    <form method="post" action="edit_bus2.jsp">
         <center>
         <table border="1" width="30%" cellpadding="3">

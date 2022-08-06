@@ -21,6 +21,22 @@
 <%@ page import = "javax.servlet.*"%>
 <%@ page import="java.io.*" %>
 <%@ page import="org.apache.commons.lang3.StringUtils" %>
+<%
+
+    //response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+
+    out.println("<div style='position: absolute; top: 0; right: 1; width: 100px; text-align:right;'><br><br><br><br><br><br><br>");
+    out.println("<a href='../logout_admin.jsp' style='font-size:20px;'>Logout</a><br>");
+    out.println("</div>");
+
+// response.setHeader("Pragma", "no-cache"); 
+// response.setDateHeader("Expires", 0);
+  
+if(session.getAttribute("userid")==null)
+{
+    response.sendRedirect("../admin.jsp");
+}
+%>
 
 <%
 
@@ -56,6 +72,20 @@ try
 
 
   Statement stmt = c.createStatement();
+
+ ResultSet rs = stmt.executeQuery( "SELECT * FROM bus_details where bus_id='"+bus_no+"'");
+if(rs.next())
+{
+    String message = "Bus with this number already xists!";
+    request.setAttribute("message", message);
+    request.getRequestDispatcher("add_bus1.jsp").forward(request, response);
+    stmt.close();
+    c.commit();
+    c.close();
+}
+
+else
+{
   String sql = "INSERT INTO Bus_Details (BUS_ID,BUS_NAME,TOTAL_SEATS,AC_or_NON_AC,DEPARTURE,DESTINATION) "
     + "VALUES ('"+bus_no+"','"+bus_name+"','"+seats+"','"+sleeper+"','"+dep+"','"+des+"');";
 
@@ -66,7 +96,7 @@ try
   c.close();
 
   }
-
+}
   catch(Exception e){
   }
 %>

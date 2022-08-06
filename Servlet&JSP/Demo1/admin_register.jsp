@@ -20,6 +20,16 @@
 <%@ page import="java.io.*" %>
 
 <%
+
+//response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+// response.setHeader("Pragma", "no-cache"); 
+// response.setDateHeader("Expires", 0);
+
+if(session.getAttribute("userid")==null)
+{
+  response.sendRedirect("admin.jsp");
+}
+
 out.println("<div class='bus'><br><br><center> Admin Register <br><br><br></div>");
 out.println("<br><br><br>");
 out.println("<form method=\"post\" action=\"admin_db.jsp\">");

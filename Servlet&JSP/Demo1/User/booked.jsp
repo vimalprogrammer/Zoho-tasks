@@ -17,13 +17,46 @@
 <%@ page import="org.apache.commons.lang3.StringUtils" %>
 
 <%
+
+//     out.println("<div style='position: absolute; top: 0; right: 1; width: 100px; text-align:right;'><br><br><br><br><br><br><br>");
+//     out.println("<a href='../logout_user.jsp' style='font-size:20px;'>Logout</a><br>");
+//     out.println("</div>");
+
+// response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+// response.setHeader("Pragma", "no-cache"); 
+// response.setDateHeader("Expires", 0);
+
+//response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+
+out.println("<div style='position: absolute; top: 0; right: 1; width: 100px; text-align:right;'><br><br><br><br><br><br><br>");
+out.println("<a href='../logout_user.jsp' style='font-size:20px;'>Logout</a><br>");
+out.println("</div>");
+
+if(session.getAttribute("userid")==null)
+{
+    response.sendRedirect("../login1.jsp");
+}
+
+
+%>
+
+
+
+<%
 try
 {
 
- String seat=request.getParameter("sn");
+ String seat1=request.getParameter("sn");
 
- // session.setAttribute("seat",seat1);
- // String seat=String.valueOf(session.getAttribute("seat"));
+ session.setAttribute("seat",seat1);
+ String seat=String.valueOf(session.getAttribute("seat"));
+
+ if(seat.equals(""))
+{
+        String message = "Field can't be empty";
+    request.setAttribute("message", message);
+    request.getRequestDispatcher("book_tkt.jsp").forward(request, response);
+}
 
  String bus_no=String.valueOf(session.getAttribute("bus"));
  // out.println(bus_no);
@@ -46,9 +79,12 @@ seat="B"+seat;
 String sql1="select * from "+bus_no+" where seat_no='"+seat+"' ";
 ResultSet rs=stmt.executeQuery(sql1);
 
+// String bus_no=(String)session.getAttribute("bn");  
+
+
 if(rs.next())
 {
-    String message = "Sorry, this seat number booked already!";
+    String message = "Sorry, this seat number booked already! Please enter your departure and destination again to continue..";
     request.setAttribute("message", message);
     request.getRequestDispatcher("book_ticket1.jsp").forward(request, response);
 }
@@ -83,8 +119,12 @@ out.println("<td>Enter gender</td>");
 out.println("<td><input type=\"text\" name=\"gender\" value=\"\" /></td>");
 out.println("</tr>");
 out.println("<tr>");
-out.println("<td>Enter ticket_no</td>");
+out.println("<td>Ticket_no</td>");
 out.println("<td><input type=\"text\" name=\"ticket_no\" value='"+temp+"' readonly /></td>");
+out.println("</tr>");
+out.println("<tr>");
+out.println("<td>Bus_no</td>");
+out.println("<td><input type=\"text\" name=\"bus_no\" value='"+bus_no+"' readonly /></td>");
 out.println("</tr>");
 out.println("<tr>");
 out.println("<td><input type=\"submit\" value=\"Add\" /></td>");
@@ -109,7 +149,7 @@ catch(Exception e){
 %>
 <br>
 <br>
-<center><p>${message}</p>
+<center><p>${message}</p></center>
 <br>
 <center><a href="#" onclick="javascript:window.history.back(-1);return false;">Back</a></center></body>
 </html>

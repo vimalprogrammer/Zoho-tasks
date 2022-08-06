@@ -18,8 +18,24 @@
 <%
 try
 {
+
+    //response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+    // response.setHeader("Pragma", "no-cache"); 
+    // response.setDateHeader("Expires", 0);
+
      String user = request.getParameter("usr");
      String pwd = request.getParameter("pwd");
+
+      session.setAttribute("usr",user);
+      session.setAttribute("pwd",pwd);  
+
+      String user1=String.valueOf(session.getAttribute("usr"));
+      String pwd1=String.valueOf(session.getAttribute("pwd"));
+
+     if(session.getAttribute("userid")==null || session.getAttribute("usr")==null)
+     {
+          response.sendRedirect("admin.jsp");
+     }
 
     if(user.equals("") ||  pwd.equals(""))
     {

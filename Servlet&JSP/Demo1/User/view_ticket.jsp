@@ -13,6 +13,7 @@
 </style>
 </head>
 <body>
+
 <%@ page import = "java.sql.*" %>
 <%@ page import = "javax.sql.*" %>
 <%@ page import = "java.util.*" %>
@@ -21,6 +22,28 @@
 <%@ page import="javax.servlet.http.HttpSession"%>
 <%@ page import="javax.servlet.http.HttpServletResponse"%>
 <%@ page import="javax.servlet.http.HttpServletRequest"%>
+
+<%
+//     out.println("<div style='position: absolute; top: 0; right: 1; width: 100px; text-align:right;'><br><br><br><br><br><br><br>");
+//     out.println("<a href='../logout_user.jsp' style='font-size:20px;'>Logout</a><br>");
+//     out.println("</div>");
+
+// response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+// response.setHeader("Pragma", "no-cache"); 
+// response.setDateHeader("Expires", 0);
+
+//response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+
+out.println("<div style='position: absolute; top: 0; right: 1; width: 100px; text-align:right;'><br><br><br><br><br><br><br>");
+out.println("<a href='../logout_user.jsp' style='font-size:20px;'>Logout</a><br>");
+out.println("</div>");
+
+if(session.getAttribute("userid")==null)
+{
+    response.sendRedirect("../login1.jsp");
+}
+
+%>
 
 <center>
 <div class="view"><br><br>View Tickets<br><br><br></div>
@@ -45,6 +68,9 @@
         <th>
             Ticket ID
         </th>
+        <th>
+            Bus No
+        </th>
     </tr>
 <%
 try
@@ -68,7 +94,7 @@ try
      // out.println(rs.getString(5));
      // out.println(rs.getString(6));
     
-out.println("<tr><td>" + rs.getString(1) + "</td><td>" + rs.getString(2)+ "</td><td>" + rs.getString(3) + "</td><td>" + rs.getString(4) + "</td><td>" +rs.getString(5) + "</td><td>" + rs.getString(6) +"</td></tr>");
+out.println("<tr><td>" + rs.getString(1) + "</td><td>" + rs.getString(2)+ "</td><td>" + rs.getString(3) + "</td><td>" + rs.getString(4) + "</td><td>" +rs.getString(5) + "</td><td>" + rs.getString(6) +"</td><td>" + rs.getString(7) +"</td></tr>");
 
  }
  out.println("</table>");

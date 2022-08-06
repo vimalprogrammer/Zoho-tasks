@@ -12,7 +12,11 @@
     </style>
 </head>
 <body>
-    <div class="user"><center><h3><br>User Registration<br></h3></center></div>
+
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+%>
+    <div class="user"><center><h3><br>User Registration<br><br></h3></center></div>
     <br><br>
    <form method="post" action="register.jsp">
         <center>

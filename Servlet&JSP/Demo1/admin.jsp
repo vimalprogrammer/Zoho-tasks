@@ -1,10 +1,25 @@
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ pageEncoding="ISO-8859-1"%><!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Admin jsp</title>
+<script type="text/javascript">
+      function preventBack() {
+    // body...
+    window.history.forward();
+}
+
+setTimeout("preventBack()",0);
+window=function(){null};
+</script>
+<!-- <script type="text/javascript">
+  history.pushState(null,null,location.href);
+  window.onpopstate=function()
+  {
+    history.go(1);
+  };
+</script> -->
 </head>
 <body>
     <br>
@@ -34,10 +49,9 @@
             </tbody>
         </table>
         <br>
-<!--         <p>Message: ${param.message}</p>
- -->            <p>${message}</p>
+<!--         <p>Message: ${param.message}</p>-->
+            <p>${message}</p>
         <br>
-        <a href="#" style="color:black" onclick="javascript:window.history.back(-1);return false;">Back</a></body>
         </center>
     </form>
 </body>

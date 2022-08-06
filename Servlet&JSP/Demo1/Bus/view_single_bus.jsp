@@ -19,6 +19,22 @@
 <%@ page import = "javax.servlet.*"%>
 <%@ page import="java.io.*" %>
 
+
+<%
+    //response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+
+    out.println("<div style='position: absolute; top: 0; right: 1; width: 100px; text-align:right;'><br><br><br><br><br><br><br>");
+    out.println("<a href='../logout_admin.jsp' style='font-size:20px;'>Logout</a><br>");
+    out.println("</div>");
+// response.setHeader("Pragma", "no-cache"); 
+// response.setDateHeader("Expires", 0);
+
+if(session.getAttribute("userid")==null)
+{
+    response.sendRedirect("../admin.jsp");
+}
+%>
+
 <div class="view"><br><br>View Tickets<br><br><br></div>
 
 <center>

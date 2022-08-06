@@ -15,7 +15,7 @@
 <body>
 
 <div class="view"><br><br>Home<br><br><br></div>
-
+ 
 
 <%@ page import = "java.sql.*" %>
 <%@ page import = "javax.sql.*" %>
@@ -28,6 +28,15 @@
 
 <%
 
+//response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+
+out.println("<div style='position: absolute; top: 0; right: 1; width: 100px; text-align:right;'><br><br><br><br><br><br><br>");
+out.println("<a href='logout_user.jsp' style='font-size:20px;'>Logout</a><br>");
+out.println("</div>");
+
+
+ boolean flag=false;
+
  String userid1 = request.getParameter("usr");
  String pwd1 = request.getParameter("pwd");
  session.setAttribute("userid",userid1);
@@ -35,6 +44,10 @@
 
   String userid=String.valueOf(session.getAttribute("userid"));
   String pwd=String.valueOf(session.getAttribute("pwd"));
+
+// if(userid.equals("vimal") && pwd.equals("123"))
+// {
+//     session.setAttribute("userid",userid);//session handling
 
 if(userid.equals("") || pwd.equals(""))
 {
@@ -66,7 +79,11 @@ else
 
     if(rs.getString(7).equals(pwd))
     {
+        flag=true;
+        session.setAttribute("userid",userid);
         out.println("<center><h3>Welcome  "+userid+"<br></h3></center>");
+        stmt.close();
+        c.close();
     }
 }
 
@@ -85,7 +102,15 @@ else
     session.setAttribute("userId", userid);
     out.println("</centre>");
 }
+
+if(!flag)
+{
+    response.sendRedirect("login1.jsp"); 
+}
+
 %>
+
+
 
 <center>
 <br>

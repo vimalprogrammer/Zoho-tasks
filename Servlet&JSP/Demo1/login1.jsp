@@ -11,8 +11,18 @@
       border: 3px solid green;
     }
 </style>
+<script type="text/javascript">
+      function preventBack() {
+    // body...
+    window.history.forward();
+}
+
+setTimeout("preventBack()",0);
+window=function(){null};
+</script>
 </head>
 <body>
+
     <center><div class="login"><h2>User Login</h2></div></center>
     <br><br><br><br>
    <form method="post" action="login2.jsp">
@@ -44,5 +54,4 @@
     </form><br><br>
     <p>${message}</p>
     <br><br>
-    <a href="#" style="color:black" onclick="javascript:window.history.back(-1);return false;">Back</a></centre></body>
 </body>

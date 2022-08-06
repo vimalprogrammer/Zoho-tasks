@@ -18,6 +18,11 @@
 <%
 try
 {
+    // response.setHeader("Pragma", "no-cache"); 
+    // response.setDateHeader("Expires", 0);
+
+    //response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    
      String user = request.getParameter("fname");
      session.putValue("userid",user);
      String lname = request.getParameter("lname");
@@ -41,9 +46,12 @@ try
      String sql = "INSERT INTO User_Details (FIRST_NAME,LAST_SEATS,EMAIL,PHONE,GENDER,PASSWORD) "
                       + "VALUES ('"+user+"','"+lname+"','"+email+"','"+phone+"','"+gender+"','"+pwd+"');";
      stmt.executeUpdate(sql);
-     out.println("<br><br><br><center>User Registered Successfully!!!</center><br><br>");
+     //out.println("<br><br><br><center>User Registered Successfully!!!</center><br><br>");
     stmt.close();
     c.close();
+    String message = "User Registered Successfully, Login with your credentials.";
+request.setAttribute("message", message);
+request.getRequestDispatcher("/login1.jsp").forward(request, response);
 
 }
 

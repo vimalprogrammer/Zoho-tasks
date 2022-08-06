@@ -23,6 +23,30 @@
 <%@ page import="org.apache.commons.lang3.StringUtils" %>
 
 <%
+//     out.println("<div style='position: absolute; top: 0; right: 1; width: 100px; text-align:right;'><br><br><br><br><br><br><br>");
+//     out.println("<a href='../logout_user.jsp' style='font-size:20px;'>Logout</a><br>");
+//     out.println("</div>");
+
+// response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+// response.setHeader("Pragma", "no-cache"); 
+// response.setDateHeader("Expires", 0);
+
+//response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+
+out.println("<div style='position: absolute; top: 0; right: 1; width: 100px; text-align:right;'><br><br><br><br><br><br><br>");
+out.println("<a href='../logout_user.jsp' style='font-size:20px;'>Logout</a><br>");
+out.println("</div>");
+
+if(session.getAttribute("userid")==null)
+{
+    response.sendRedirect("../login1.jsp");
+}
+
+%>
+
+
+
+<%
 
 try
 {
@@ -31,6 +55,7 @@ try
  String phone = request.getParameter("phone");
  String gender = request.getParameter("gender");
  String ticket_no = request.getParameter("ticket_no");
+ String bus_no = request.getParameter("bus_no");
 
   if(name.equals("") || mail.equals("") || phone.equals("") || gender.equals("") || ticket_no.equals(""))
   {
@@ -47,8 +72,8 @@ try
 
 
   Statement stmt = c.createStatement();
-  String sql = "INSERT INTO ticket_bookings (name,mail,phone,gender,ticket_no) "
-    + "VALUES ('"+name+"','"+mail+"','"+phone+"','"+gender+"','"+ticket_no+"');";
+  String sql = "INSERT INTO ticket_bookings (name,mail,phone,gender,ticket_no,bus_no) "
+    + "VALUES ('"+name+"','"+mail+"','"+phone+"','"+gender+"','"+ticket_no+"','"+bus_no+"');";
 
   stmt.executeUpdate(sql);
   stmt.close();
@@ -84,6 +109,9 @@ try
         <th>
             Ticket ID
         </th>
+        <th>
+            Bus No
+        </th>
     </tr>
 <%
 try
@@ -101,7 +129,7 @@ try
  while(rs.next())
  {
 
-out.println("<tr><td>" + rs.getString(1) + "</td><td>" + rs.getString(2)+ "</td><td>" + rs.getString(3) + "</td><td>" + rs.getString(4) + "</td><td>" +rs.getString(5) + "</td><td>" + rs.getString(6) +"</td></tr>");
+out.println("<tr><td>" + rs.getString(1) + "</td><td>" + rs.getString(2)+ "</td><td>" + rs.getString(3) + "</td><td>" + rs.getString(4) + "</td><td>" +rs.getString(5) + "</td><td>"+ rs.getString(6) +"</td><td>" + rs.getString(7) +"</td></tr>");
 
  }
  out.println("</table>");
