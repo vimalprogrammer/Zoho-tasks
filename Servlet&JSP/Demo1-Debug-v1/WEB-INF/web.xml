@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+<!-- 
+<servlet>
+	<servlet-name>s1</servlet-name>
+	<servlet-class>ServletDemo</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>s1</servlet-name>
+	<url-pattern>/add</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+	<servlet-name>s2s</servlet-name>
+	<servlet-class>Servlet2servlet</servlet-class>
+
+<init-param>
+	<param-name>name</param-name>
+	<param-value>Vimal M</param-value>
+</init-param>
+
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>s2s</servlet-name>
+	<url-pattern>/v</url-pattern>
+</servlet-mapping>
+
+
+<context-param>
+	<param-name>name</param-name>
+	<param-value>VIMAL M</param-value>
+</context-param>
+ -->
+
+
+<!-- <servlet>
+	<servlet-name>s1</servlet-name>
+	<servlet-class>LoginVimal</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>s1</servlet-name>
+	<url-pattern>/login_d</url-pattern>
+</servlet-mapping> -->
+
+<context-param>
+	<param-name>college</param-name>
+	<param-value>krct</param-value>
+</context-param>
+
+<context-param>
+	<param-name>crush</param-name>
+	<param-value>vars</param-value>
+</context-param>
+
+<context-param>
+	<param-name>friend</param-name>
+	<param-value>Vishnu</param-value>
+</context-param>
+
+</web-app>
